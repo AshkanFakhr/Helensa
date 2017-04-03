@@ -1,8 +1,14 @@
-package com.etehadepaitakhtperfume.helensa;
+package com.etehadepaitakhtperfume.helensa.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -10,36 +16,45 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.etehadepaitakhtperfume.helensa.R;
 
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends NavigationDrawerActivity
         implements BaseSliderView.OnSliderClickListener,
-        ViewPagerEx.OnPageChangeListener{
+        ViewPagerEx.OnPageChangeListener {
 
     SliderLayout sliderLayout;
-    HashMap<String, String> HashMapForURL ;
-    HashMap<String, Integer> HashMapForLocalRes ;
+    HashMap<String, String> HashMapForURL;
+    HashMap<String, Integer> HashMapForLocalRes;
+    private Toolbar toolbar;
+    private LinearLayoutCompat imgGalleryLay, branchesLay, productsLay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sliderLayout = (SliderLayout)findViewById(R.id.slider);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        TextView textView = (TextView) findViewById(R.id.toolbarTitle);
+//        textView.setTypeface(tf);
+//        textView.setText("");
 
-        //Call this method if you want to add images from URL .
-/*
-        AddImagesUrlOnline();
-*/
+        sliderLayout = (SliderLayout) findViewById(R.id.slider);
 
-        //Call this method to add images from local drawable folder .
+        /*//Call this method if you want to add slider images from URL .
+        AddImagesUrlOnline();*/
+
+        //Call this method to add slider images from local drawable folder .
         AddImageUrlFormLocalRes();
 
         //Call this method to stop automatic sliding.
         //sliderLayout.stopAutoCycle();
 
-        for(String name : HashMapForLocalRes.keySet()){
+        for (String name : HashMapForLocalRes.keySet()) {
 
             TextSliderView textSliderView = new TextSliderView(MainActivity.this);
 
@@ -52,19 +67,50 @@ public class MainActivity extends AppCompatActivity
             textSliderView.bundle(new Bundle());
 
             textSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra", name);
 
             sliderLayout.addSlider(textSliderView);
         }
         sliderLayout.setPresetTransformer(SliderLayout.Transformer.DepthPage);
-
         sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-
         sliderLayout.setCustomAnimation(new DescriptionAnimation());
-
         sliderLayout.setDuration(4000);
-
         sliderLayout.addOnPageChangeListener(MainActivity.this);
+
+        imgGalleryLay = (LinearLayoutCompat) findViewById(R.id.imgGalleryLay);
+        branchesLay = (LinearLayoutCompat) findViewById(R.id.branchesLay);
+        productsLay = (LinearLayoutCompat) findViewById(R.id.productsLay);
+
+        imgGalleryLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgGalleryLayClick();
+            }
+        });
+        branchesLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                branchesLayClick();
+            }
+        });
+        productsLay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                productsLayClick();
+            }
+        });
+    }
+
+    private void imgGalleryLayClick() {
+
+    }
+
+    private void branchesLayClick() {
+
+    }
+
+    private void productsLayClick() {
+
     }
 
     /*@Override
@@ -76,11 +122,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onSliderClick(BaseSliderView slider) {
 
-        Toast.makeText(this,slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
     public void onPageSelected(int position) {
@@ -105,13 +152,13 @@ public class MainActivity extends AppCompatActivity
         HashMapForURL.put("GingerBread", "http://androidblog.esy.es/images/gingerbread-5.png");
     }*/
 
-    public void AddImageUrlFormLocalRes(){
+    public void AddImageUrlFormLocalRes() {
 
         HashMapForLocalRes = new HashMap<String, Integer>();
 
-        HashMapForLocalRes.put("Helensa", R.drawable.helensa_splash);
-        HashMapForLocalRes.put("Perfume", R.mipmap.ic_launcher);
-        HashMapForLocalRes.put("Test", R.drawable.helensa_splash);
+        HashMapForLocalRes.put("Helensa", R.mipmap.ic_buy_history);
+        HashMapForLocalRes.put("Perfume", R.mipmap.ic_user_info);
+        HashMapForLocalRes.put("Test", R.mipmap.ic_introduced_users);
         HashMapForLocalRes.put("Android", R.mipmap.ic_launcher);
         HashMapForLocalRes.put("Ic Launcher", R.drawable.helensa_splash);
 

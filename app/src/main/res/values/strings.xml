@@ -1,3 +1,30 @@
 <resources>
-    <string name="app_name">Helensa</string>
+    <string name="app_name">هلنسا</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="name">نام</string>
+    <string name="last_name">نام خانوادگی</string>
+    <string name="mobile">تلفن همراه</string>
+    <string name="password">رمز عبور</string>
+    <string name="password_re">تکرار رمز عبور</string>
+    <string name="register">ثبت نام</string>
+    <string name="mobile_email">تلفن همراه / ایمیل</string>
+    <string name="forgot_password">رمز عبورم را فراموش کرده ام</string>
+    <string name="login">ورود</string>
+
+    <string name="user_info">اطلاعات کاربری</string>
+    <string name="buy_history">سوابق خرید</string>
+    <string name="points">امتیازات</string>
+    <string name="introduced_users">افراد معرفی شده</string>
+    <string name="introducer_code">کد معرف</string>
+    <string name="fav_list">لیست علاقمندی ها</string>
+    <string name="image_gallery">گالری تصاویر</string>
+    <string name="branches">نمایندگان</string>
+    <string name="products">محصولات</string>
+
+    <string name="action_settings">Settings</string>
+
 </resources>
